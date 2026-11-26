@@ -1,6 +1,8 @@
 # Funniest Cat Voicemail Greeting
 
 [![make.fun](https://make.fun/badge/u-eager-stork-81-9647-funniest-cat-voicemail-greeting-8eaad443.svg)](https://make.fun/c/u-eager-stork-81-9647-funniest-cat-voicemail-greeting-8eaad443)
+[![rank](https://make.fun/badge/u-eager-stork-81-9647-funniest-cat-voicemail-greeting-8eaad443/ikiroki15-web/entry-funniest-cat-voicemail-greeting/rank.svg)](https://make.fun/c/u-eager-stork-81-9647-funniest-cat-voicemail-greeting-8eaad443)
+[![reward](https://make.fun/badge/u-eager-stork-81-9647-funniest-cat-voicemail-greeting-8eaad443/ikiroki15-web/entry-funniest-cat-voicemail-greeting/reward.svg)](https://make.fun/c/u-eager-stork-81-9647-funniest-cat-voicemail-greeting-8eaad443)
 
 One line, 120 characters at most: the funniest voicemail greeting a cat would record.
 
