@@ -20,6 +20,14 @@ function fail(message: string): never {
 }
 
 function main(): void {
+  // --help / -h prints usage and exits without writing anything, so a
+  // curious runner never produces a stray entry file by accident.
+  if (process.argv.slice(2).includes("--help") || process.argv.slice(2).includes("-h")) {
+    console.log("Usage: node main.ts [--help]");
+    console.log("Copies greeting.txt (one cat voicemail greeting, at most 120 characters) to /output/entry.txt.");
+    return;
+  }
+
   // greeting.txt ships in this repository, beside this entrypoint, so the
   // program finds it no matter which directory it is started from.
   const here = dirname(fileURLToPath(import.meta.url));
@@ -31,6 +39,11 @@ function main(): void {
   } catch {
     fail(`could not read ${sourcePath}`);
   }
+
+  // A UTF-8 byte-order mark at the start of the file is an encoding
+  // artefact, not part of the greeting: strip it before any check, so a
+  // BOM can never silently eat one of the 120 characters or fail the gate.
+  greeting = greeting.replace(/^\uFEFF/, "");
 
   // The file is written with no trailing newline, so what lands in
   // /output/entry.txt is exactly the greeting, nothing more.
@@ -47,6 +60,11 @@ function main(): void {
   }
   if (line.includes("\n") || line.includes("\r")) {
     fail("greeting must be a single line");
+  }
+  // Control characters are not printable text and the gate reads UTF-8
+  // text: reject any of them rather than letting one slip into the entry.
+  if ([...line].some((c) => (c.codePointAt(0) ?? 0) < 0x20)) {
+    fail("greeting must not contain control characters");
   }
 
   mkdirSync(dirname(OUTPUT_PATH), { recursive: true });
